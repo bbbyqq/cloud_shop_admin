@@ -86,7 +86,7 @@
 				var that = this
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
-						that.$axios.post('user/login', row).then((response) => {
+						that.$axios.post('/user/login', row).then((response) => {
 							if (response.data.message === 'success') {
 								that.$router.push('manage');
 							} else {

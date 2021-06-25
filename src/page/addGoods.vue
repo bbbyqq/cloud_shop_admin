@@ -5,7 +5,7 @@
 				<el-input v-model="ruleForm.name"></el-input>
 			</el-form-item>
 			<el-form-item label="商品图片" prop="img">
-				<el-upload action="goods/upload" list-type="picture-card" ref="upload"
+				<el-upload action="/goods/upload" list-type="picture-card" ref="upload"
 					:on-success="handleSuccess" :on-preview="handlePreview" :on-remove="handleRemove">
 					<i class="el-icon-plus"></i>
 				</el-upload>

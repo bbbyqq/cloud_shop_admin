@@ -11,11 +11,11 @@
 				<el-form-item label="密码" prop="pass">
 					<el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="确认密码" prop="checkPass">
-					<el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
-				</el-form-item>
 				<el-form-item style="margin-top: 4.25rem;">
-					<el-button style="width: 27.1875rem;" type="primary" @click="submitForm('ruleForm',ruleForm)">提交
+					<el-button style="width: 27.1875rem;" type="primary" @click="submitForm('ruleForm',ruleForm)">登录
+					</el-button>
+					<br />
+					<el-button style="width: 27.1875rem;margin-top: 1.125rem;" type="primary" @click="register">注册
 					</el-button>
 					<br />
 					<el-button style="width: 27.1875rem;margin-top: 1.125rem;" @click="resetForm('ruleForm')">重置
@@ -41,29 +41,17 @@
 				}
 			};
 			var validatePass = (rule, value, callback) => {
-				if (value === '') {
-					callback(new Error('请输入密码'));
-				} else {
-					if (this.ruleForm.checkPass !== '') {
-						this.$refs.ruleForm.validateField('checkPass');
-					}
+				if (!value) {
+					return callback(new Error('请输入密码'));
+				} 
+				else {
 					callback();
 				}
-			};
-			var validatePass2 = (rule, value, callback) => {
-				if (value === '') {
-					callback(new Error('请再次输入密码'));
-				} else if (value !== this.ruleForm.pass) {
-					callback(new Error('两次输入密码不一致!'));
-				} else {
-					callback();
-				}
-			};
+			}
 			return {
 				ruleForm: {
 					userName: '',
-					pass: '',
-					checkPass: ''
+					pass: ''
 				},
 				rules: {
 					userName: [{
@@ -72,10 +60,6 @@
 					}],
 					pass: [{
 						validator: validatePass,
-						trigger: 'blur'
-					}],
-					checkPass: [{
-						validator: validatePass2,
 						trigger: 'blur'
 					}]
 				}
@@ -87,6 +71,7 @@
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
 						that.$axios.post('/user/login', row).then((response) => {
+							console.log(response)
 							if (response.data.message === 'success') {
 								that.$router.push('manage');
 							} else {
@@ -100,9 +85,12 @@
 					}
 				});
 			},
+			register() {
+				this.$router.push('register');
+			},
 			resetForm(formName) {
 				this.$refs[formName].resetFields();
-			},	
+			},
 			handleTips() {
 				alert('账户：admin'+'\n'+'密码：admin')
 			}

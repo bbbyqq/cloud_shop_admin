@@ -1,4 +1,5 @@
 import login from './page/login.vue'
+import register from './page/register.vue'
 import manage from './page/manage.vue'
 import home from './page/home.vue'
 import userList from './page/userList.vue'
@@ -11,6 +12,9 @@ import explain from './page/explain.vue'
 const routers = [{
 		path: '/',
 		component: login
+	},{
+		path: '/register',
+		component: register
 	}, {
 		path: '/manage',
 		name: 'manage',

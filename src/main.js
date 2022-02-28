@@ -7,6 +7,7 @@ import App from './App.vue'
 import './api/mock.js' //引入mock.js
 import axios from 'axios'
 import store from './store/index.js'
+import './assets/global.css'
 
 Vue.prototype.$axios = axios
 Vue.prototype.$store = store

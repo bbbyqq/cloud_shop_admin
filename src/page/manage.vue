@@ -1,5 +1,5 @@
 <template>
-	<el-container>
+	<el-container class="layout-container">
 		<el-aside :width="isCollapse?'65px':'200px'">
 			<el-menu :default-active="defaultActive" style="min-height: 100%;" router :collapse="isCollapse"
 				:collapse-transition="false">
@@ -48,8 +48,8 @@
 		<el-container>
 			<el-header>
 				<!-- el-aside折叠与展开 -->
-				<i v-if="isToggle" class="el-icon-s-fold" style="line-height: 3.5rem;font-size: 1.25rem;margin-right: 0.625rem;" @click="toggleCollapse"></i>
-				<i v-else class="el-icon-s-unfold" style="line-height: 3.5rem;font-size: 1.25rem;margin-right: 0.625rem;" @click="toggleCollapse"></i>
+				<i v-if="isToggle" class="el-icon-s-fold fold" @click="toggleCollapse"></i>
+				<i v-else class="el-icon-s-unfold fold" @click="toggleCollapse"></i>
 				<!-- 面包屑 -->
 				<el-breadcrumb separator="/">
 					<el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>
@@ -106,6 +106,10 @@
 
 
 <style scoped>
+  .layout-container {
+    height: 100%;
+  }
+
 	.el-submenu .el-menu-item {
 		min-width: auto;
 	}
@@ -117,11 +121,18 @@
 		line-height: 3.5rem;
 		display: flex;
 	}
-	
+
+  .fold {
+    line-height: 3.5rem;
+    font-size: 1.25rem;
+    margin-right: 0.625rem;
+    cursor: pointer;
+  }
+
 	.collapse {
 		background-color: transparent;
 	}
-	
+
 	.collapse:hover {
 	  background-color: transparent;
 	}
